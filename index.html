@@ -2,92 +2,160 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tallhagen Unblocked</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            /* Using a reliable dark space background instead of a glitchy GIF */
-            background: #0a0a0a;
+            padding: 0;
+            background: #050505;
             color: white;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
+        /* Space Background Texture */
         .overlay {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://www.transparenttextures.com/patterns/stardust.png');
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding-bottom: 50px;
         }
 
-        h1 { text-align: center; color: #00d4ff; text-shadow: 0 0 15px #00d4ff; font-size: 3rem; margin-top: 50px; }
+        /* Glowing Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
 
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+            letter-spacing: 2px;
+        }
+
+        /* Game Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
-            padding: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            padding: 0 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
+        /* Pro Game Card Styling */
         .card {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            background: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 0 30px #00d4ff;
+            transform: scale(1.08);
+            background: rgba(0, 212, 255, 0.15);
             border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
         }
 
-        .card img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; }
-        .card p { margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
-        
-        .error-msg { text-align: center; color: #ff4444; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; }
+        .card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #111; /* Shows while loading */
+        }
+
+        .card p {
+            margin: 12px 0 5px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Loading Animation */
+        #status {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
+
     <div class="overlay">
-        <h1>🎮 Tallhagen Unblocked</h1>
-        <div id="game-grid" class="grid">Loading huge game library...</div>
+        <header>
+            <h1>🎮 Tallhagen Unblocked</h1>
+            <p id="status">Waking up the games...</p>
+        </header>
+
+        <div id="game-grid" class="grid"></div>
     </div>
 
     <script>
-        // Use your own forked games.json instead of an external one to avoid rate limits
-        fetch('games.json') 
+        const grid = document.getElementById('game-grid');
+        const status = document.getElementById('status');
+        
+        // Function to create and add a card to the screen
+        function addGameToGrid(name, url, thumb) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            // Fix broken thumbnails with a nice placeholder
+            const finalThumb = thumb || `https://picsum.photos/seed/${name}/200/150`;
+
+            card.innerHTML = `
+                <img src="${finalThumb}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x150/111/00d4ff?text=GAME'">
+                <p>${name}</p>
+            `;
+
+            card.onclick = () => {
+                // Encodes URL to prevent breakage in play.html
+                window.location.href = `play.html?url=${encodeURIComponent(url)}`;
+            };
+            grid.appendChild(card);
+        }
+
+        // STEP 1: Try to load your personal games.json
+        fetch('games.json')
             .then(res => res.json())
-            .then(games => {
-                const grid = document.getElementById('game-grid');
-                grid.innerHTML = ''; 
-
-                games.forEach(game => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    const icon = game.game_image_icon || 'https://via.placeholder.com/150/00d4ff/ffffff?text=Game';
-                    
-                    card.innerHTML = `
-                        <img src="${icon}" loading="lazy">
-                        <p>${game.name}</p>
-                    `;
-
-                    card.onclick = () => {
-                        window.location.href = `play.html?url=${game.game_url}`;
-                    };
-                    grid.appendChild(card);
-                });
+            .then(localGames => {
+                if(localGames.length > 0) {
+                    localGames.forEach(g => addGameToGrid(g.name, g.game_url || g.url, g.game_image_icon || g.thumbnailUrl));
+                }
+                loadApiGames(); // Also load API games to make it hit 100+
             })
-            .catch(err => {
-                document.getElementById('game-grid').innerHTML = `
-                    <div class="error-msg">
-                        <h3>Oops! GitHub is tired.</h3>
-                        <p>Wait 5 minutes without refreshing, or make sure your games.json file isn't empty!</p>
-                    </div>`;
+            .catch(() => {
+                console.log("No local games found, switching to API...");
+                loadApiGames();
             });
+
+        // STEP 2: Load 100+ Professional Games from GamePix
+        function loadApiGames() {
+            fetch('https://games.gamepix.com/main/11?num=100')
+                .then(res => res.json())
+                .then(response => {
+                    status.style.display = 'none'; // Hide loading text
+                    response.data.forEach(g => {
+                        addGameToGrid(g.title, g.url, g.thumbnailUrl);
+                    });
+                })
+                .catch(err => {
+                    status.innerText = "Connection Error. Refresh the page!";
+                });
+        }
     </script>
 </body>
 </html>
