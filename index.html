@@ -2,21 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen | 500+ Unblocked</title>
+    <title>Tallhagen | 2026 Mirror</title>
     <style>
         body { margin: 0; background: #050505; color: #00d4ff; font-family: 'Segoe UI', sans-serif; }
-        .nav { background: #111; padding: 25px; text-align: center; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 15px #00d4ff; }
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; }
+        .nav { background: #111; padding: 25px; text-align: center; border-bottom: 2px solid #00d4ff; }
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; text-shadow: 0 0 10px #00d4ff; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
-        
         .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; text-align: center; }
-        .card:hover { border-color: #00d4ff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+        .card:hover { border-color: #00d4ff; transform: scale(1.05); }
         .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }
-        .card p { margin: 10px 0 0; font-weight: bold; color: #fff; font-size: 14px; }
-
+        .card p { margin: 10px 0 0; font-weight: bold; color: #fff; }
         #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: #fff; padding: 12px 25px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
+        .close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: #fff; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
     </style>
 </head>
 <body>
@@ -33,23 +31,22 @@
 <div class="grid" id="grid"></div>
 
 <script>
-    // ONLY GITHUB MIRRORS - Harder to block, no 'hwcdn' errors
+    // These use the same mirror logic as your working Slope/Subway links
     const gameList = [
-        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/slope/slope.png" },
-        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/subway-surfers/img/subway-surfers.png" },
-        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/tunnel-rush/tunnel-rush.png" },
-        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/retro-bowl/retro-bowl.png" },
-        { n: "1v1.LOL", u: "https://726487192-805164227572851440.preview.edit.mcreader.net/1v1.lol/", i: "https://via.placeholder.com/150/00d4ff/000?text=1v1" },
-        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://via.placeholder.com/150/00d4ff/000?text=EggyCar" },
+        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://via.placeholder.com/150/00d4ff/000?text=Slope" },
+        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://via.placeholder.com/150/00d4ff/000?text=Subway" },
+        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://via.placeholder.com/150/00d4ff/000?text=Tunnel+Rush" },
+        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://via.placeholder.com/150/00d4ff/000?text=Retro+Bowl" },
+        { n: "Bitlife", u: "https://ubg77.github.io/edit/bitlife/", i: "https://via.placeholder.com/150/00d4ff/000?text=Bitlife" },
         { n: "Minecraft", u: "https://precisionclient.pages.dev/", i: "https://via.placeholder.com/150/00d4ff/000?text=Minecraft" },
-        { n: "Drive Mad", u: "https://ubg77.github.io/edit/drive-mad/", i: "https://via.placeholder.com/150/00d4ff/000?text=DriveMad" }
+        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://via.placeholder.com/150/00d4ff/000?text=Eggy+Car" }
     ];
 
     const grid = document.getElementById('grid');
     gameList.forEach(game => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = `<img src="${game.i}" onerror="this.src='https://via.placeholder.com/150/222/00d4ff?text=Game'"><p>${game.n}</p>`;
+        card.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
         card.onclick = () => {
             document.getElementById('game-frame').src = game.u;
             document.getElementById('player').style.display = 'block';
@@ -62,6 +59,5 @@
         document.getElementById('game-frame').src = '';
     }
 </script>
-
 </body>
 </html>
