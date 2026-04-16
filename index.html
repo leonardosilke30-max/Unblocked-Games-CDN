@@ -2,62 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Google Drive - My Files</title>
+    <title>Dashboard - Google Drive</title>
     <style>
-        :root { --bg: #0a0a0c; --card: #16161a; --accent: #00d4ff; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Inter', sans-serif; }
-        .nav { padding: 20px 50px; background: #111; border-bottom: 1px solid #333; display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-weight: 900; letter-spacing: 2px; color: var(--accent); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 40px; }
-        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #222; cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .card img { width: 100%; height: 110px; object-fit: cover; }
-        .card p { margin: 10px; font-size: 14px; font-weight: bold; text-align: center; }
+        :root { --accent: #00d4ff; --bg: #0d1117; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; }
+        .nav { padding: 20px; background: #161b22; border-bottom: 2px solid var(--accent); text-align: center; font-weight: bold; letter-spacing: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
+        .card { background: #21262d; border-radius: 10px; padding: 10px; border: 1px solid #30363d; cursor: pointer; transition: 0.3s; text-align: center; }
+        .card:hover { border-color: var(--accent); transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+        .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }
+        .card p { margin: 10px 0 0; font-size: 14px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="nav">
-    <div class="logo">TALLHAGEN UNBLOCKED</div>
-</div>
-
+<div class="nav">TALLHAGEN UNBLOCKED</div>
 <div class="grid" id="grid"></div>
 
 <script>
-    // These are Base64 Encoded URLs. The school filter CANNOT read these.
-    const collection = [
-        { n: "Slope", e: "aHR0cHM6Ly9rZGF0YTEuY29tLzIwMjAvMDUvc2xvcGUv", i: "https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
-        { n: "Subway Surfers", e: "aHR0cHM6Ly9nYW1lcy5tYXRocGFwZXJzLm9yZy9zdWJ3YXktc3VyZmVycy8=", i: "https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
-        { n: "Tunnel Rush", e: "aHR0cHM6Ly91Ymc3Ny5naXRodWIuaW8vZWRpdC90dW5uZWwtcnVzaC8=", i: "https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
-        { n: "Retro Bowl", e: "aHR0cHM6Ly91Ymc3Ny5naXRodWIuaW8vZWRpdC9yZXRyby1ib3dsLw==", i: "https://img.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
-        { n: "1v1.LOL", e: "aHR0cHM6Ly8xdjEubG9sLw==", i: "https://img.gamedistribution.com/666657908f9d44f7988361099f36b048-512x512.jpeg" }
+    // These are verified mirrors that bypass the "404" and "Black Screen" errors.
+    const games = [
+        { n: "Slope (Working)", u: "https://kdata1.com/2020/05/slope/", i: "https://static.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
+        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://static.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
+        { n: "Tunnel Rush", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2330740/index.html", i: "https://static.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
+        { n: "Retro Bowl", u: "https://game316049.konggames.com/gamebox/runtime/index.html", i: "https://static.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
+        { n: "Drive Mad", u: "https://ubg77.github.io/edit/drive-mad/", i: "https://via.placeholder.com/150/00d4ff/000?text=Drive+Mad" },
+        { n: "Bitlife", u: "https://raw.githack.com/3kh0/3kh0-assets/main/bitlife/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=Bitlife" },
+        { n: "1v1.LOL (Mirror)", u: "https://docs-opensocial.googleusercontent.com/gadgets/proxy?container=fb&url=https://1v1.lol/", i: "https://static.gamedistribution.com/666657908f9d44f7988361099f36b048-512x512.jpeg" },
+        { n: "Eggy Car", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2114757/index.html", i: "https://static.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" }
     ];
 
-    const container = document.getElementById('grid');
-
-    collection.forEach(game => {
+    const grid = document.getElementById('grid');
+    games.forEach(g => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
+        div.innerHTML = `<img src="${g.i}"><p>${g.n}</p>`;
         
         div.onclick = () => {
-            // Decodes the gibberish back into a URL only at the moment of clicking
-            const decodedUrl = atob(game.e);
-            
+            // "About:Blank" Cloaking - same thing PlayGama uses
             const win = window.open('about:blank', '_blank');
-            if (win) {
-                win.document.title = "Google Docs";
-                const iframe = win.document.createElement('iframe');
-                iframe.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;border:none;margin:0;padding:0;overflow:hidden;z-index:999999;";
-                iframe.src = decodedUrl;
-                win.document.body.appendChild(iframe);
-            } else {
-                alert("Pop-up blocked! Please allow pop-ups for this site.");
-            }
+            win.document.title = "Google Drive";
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            const iframe = win.document.createElement('iframe');
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = g.u;
+            win.document.body.appendChild(iframe);
         };
-        container.appendChild(div);
+        grid.appendChild(div);
     });
 </script>
-
 </body>
 </html>
