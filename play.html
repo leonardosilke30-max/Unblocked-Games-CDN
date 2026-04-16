@@ -1,0 +1,9 @@
+<body style="margin:0; overflow:hidden;">
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameUrl = urlParams.get('url');
+        if(gameUrl) {
+            document.write(`<iframe src="${gameUrl}" style="width:100vw; height:100vh; border:none;"></iframe>`);
+        }
+    </script>
+</body>
