@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen Unblocked</title>
+    <title>Tallhagen | 2026 Unblocked</title>
     <style>
-        body { margin: 0; background: #0a0a0a; color: #00d4ff; font-family: 'Segoe UI', sans-serif; }
+        body { margin: 0; background: #050505; color: #00d4ff; font-family: 'Segoe UI', sans-serif; }
         .nav { background: #111; padding: 25px; text-align: center; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 15px #00d4ff; }
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; }
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; text-transform: uppercase; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
         
         .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; text-align: center; }
-        .card:hover { border-color: #00d4ff; transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+        .card:hover { border-color: #00d4ff; transform: translateY(-5px); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
         .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }
         .card p { margin: 10px 0 0; font-weight: bold; color: #fff; font-size: 14px; }
 
-        /* The Player */
+        /* Fullscreen Overlay */
         #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .close { position: absolute; top: 10px; left: 10px; background: #ff4444; color: #fff; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; z-index: 10000; }
+        .close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: #fff; padding: 12px 25px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
     </style>
 </head>
 <body>
 
 <div id="player">
-    <div class="close" onclick="closeGame()">CLOSE</div>
+    <div class="close" onclick="closeGame()">✖ CLOSE</div>
     <iframe id="game-frame" src=""></iframe>
 </div>
 
@@ -31,21 +31,19 @@
     <h1>TALLHAGEN</h1>
 </div>
 
-<div class="grid" id="grid">
-    </div>
+<div class="grid" id="grid"></div>
 
 <script>
+    // These are ALL raw CDN links like your working Slope/Subway links
     const gameList = [
         { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://static.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
         { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://static.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
         { n: "Tunnel Rush", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2330740/index.html", i: "https://static.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
         { n: "Retro Bowl", u: "https://game316049.konggames.com/gamebox/runtime/index.html", i: "https://static.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
-        { n: "Bitlife", u: "https://raw.githack.com/3kh0/3kh0-assets/main/bitlife/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=Bitlife" },
-        { n: "Minecraft", u: "https://raw.githack.com/3kh0/3kh0-assets/main/minecraft-13/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=Minecraft" },
-        { n: "Doodle Jump", u: "https://raw.githack.com/3kh0/3kh0-assets/main/doodle-jump/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=DoodleJump" },
-        { n: "Paper.io 2", u: "https://raw.githack.com/3kh0/3kh0-assets/main/paperio2/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=Paperio" },
-        { n: "Drive Mad", u: "https://raw.githack.com/3kh0/3kh0-assets/main/drive-mad/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=DriveMad" },
-        { n: "Eggy Car", u: "https://raw.githack.com/3kh0/3kh0-assets/main/eggy-car/index.html", i: "https://via.placeholder.com/150/00d4ff/000?text=EggyCar" }
+        { n: "Eggy Car", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2114757/index.html", i: "https://static.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" },
+        { n: "Minecraft", u: "https://precisionclient.pages.dev/", i: "https://via.placeholder.com/150/00d4ff/000?text=Minecraft" },
+        { n: "Drift Hunters", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/1444158/index.html", i: "https://static.gamedistribution.com/735c091917f64794828699742518e388-512x512.jpeg" },
+        { n: "Crossy Road", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2330663/index.html", i: "https://static.gamedistribution.com/8303f901192d46e2888463994960d703-512x512.jpeg" }
     ];
 
     const grid = document.getElementById('grid');
