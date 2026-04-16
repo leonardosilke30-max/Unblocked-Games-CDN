@@ -6,68 +6,60 @@
     <style>
         body {
             margin: 0;
-            background: #000 url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJpbmZ6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3/l41lTjJ8zZ6Z6Z6Z6/giphy.gif') no-repeat center center fixed;
-            background-size: cover;
+            /* Using a reliable dark space background instead of a glitchy GIF */
+            background: #0a0a0a;
             color: white;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
         }
 
-        /* Glass Overlay to make games readable */
         .overlay {
-            background: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://www.transparenttextures.com/patterns/stardust.png');
             min-height: 100vh;
             padding: 20px;
         }
 
-        h1 { text-align: center; text-shadow: 0 0 20px #00d4ff; font-size: 3rem; }
+        h1 { text-align: center; color: #00d4ff; text-shadow: 0 0 15px #00d4ff; font-size: 3rem; margin-top: 50px; }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 20px;
-            padding: 20px;
+            padding: 40px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 15px;
             text-align: center;
             transition: 0.3s;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .card:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 25px #00d4ff;
+            transform: translateY(-10px);
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 30px #00d4ff;
             border-color: #00d4ff;
         }
 
-        .card img {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .card p { margin: 10px 0 0; font-size: 14px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .card img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; }
+        .card p { margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
+        
+        .error-msg { text-align: center; color: #ff4444; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; }
     </style>
 </head>
 <body>
     <div class="overlay">
         <h1>🎮 Tallhagen Unblocked</h1>
-        <div id="game-grid" class="grid">Loading 500+ Games...</div>
+        <div id="game-grid" class="grid">Loading huge game library...</div>
     </div>
 
     <script>
-        const hoverSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
-        
-        // ULTIMATE LAZY MOVE: Fetching a massive list from a public database
-        fetch('https://raw.githubusercontent.com/skid-inc/skid-inc.github.io/main/games.json')
+        // Use your own forked games.json instead of an external one to avoid rate limits
+        fetch('games.json') 
             .then(res => res.json())
             .then(games => {
                 const grid = document.getElementById('game-grid');
@@ -76,7 +68,6 @@
                 games.forEach(game => {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    // Use a fallback image if the game doesn't have one
                     const icon = game.game_image_icon || 'https://via.placeholder.com/150/00d4ff/ffffff?text=Game';
                     
                     card.innerHTML = `
@@ -84,7 +75,6 @@
                         <p>${game.name}</p>
                     `;
 
-                    card.onmouseenter = () => { hoverSound.currentTime = 0; hoverSound.play(); };
                     card.onclick = () => {
                         window.location.href = `play.html?url=${game.game_url}`;
                     };
@@ -92,7 +82,11 @@
                 });
             })
             .catch(err => {
-                document.getElementById('game-grid').innerHTML = "Error loading games. GitHub might be rate-limiting. Try refreshing!";
+                document.getElementById('game-grid').innerHTML = `
+                    <div class="error-msg">
+                        <h3>Oops! GitHub is tired.</h3>
+                        <p>Wait 5 minutes without refreshing, or make sure your games.json file isn't empty!</p>
+                    </div>`;
             });
     </script>
 </body>
