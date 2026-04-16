@@ -2,54 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen Unblocked</title>
+    <title>Tallhagen | Unblocked</title>
     <style>
-        body { margin: 0; background: #000; color: #00d4ff; font-family: sans-serif; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding: 20px; }
-        .card { background: #111; border: 2px solid #333; border-radius: 10px; padding: 10px; cursor: pointer; transition: 0.3s; }
-        .card:hover { border-color: #00d4ff; transform: scale(1.05); background: #1a1a1a; }
-        .card img { width: 100%; border-radius: 5px; height: 100px; object-fit: cover; }
-        h1 { padding: 20px; margin: 0; text-shadow: 0 0 10px #00d4ff; }
-        #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; }
+        body { margin: 0; background: #080a0f; color: #00d4ff; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        .nav { background: #111; padding: 30px; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 20px #00d4ff; }
+        h1 { margin: 0; font-size: 2.5rem; letter-spacing: 5px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; padding: 40px; }
+        
+        /* Game Cards */
+        .card { background: #1a1a1a; border-radius: 12px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+        .card img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+        .card p { margin: 0; font-weight: bold; color: white; }
+
+        /* Fullscreen Player */
+        #game-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .close { position: absolute; top: 10px; right: 20px; background: red; color: #fff; padding: 10px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+        .btn-close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: white; padding: 12px 25px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-<div id="player">
-    <div class="close" onclick="document.getElementById('player').style.display='none'; document.querySelector('iframe').src=''">CLOSE</div>
-    <iframe src=""></iframe>
+<div id="game-overlay">
+    <div class="btn-close" onclick="stopGame()">✖ CLOSE GAME</div>
+    <iframe id="game-iframe" src=""></iframe>
 </div>
 
-<h1>TALLHAGEN</h1>
+<div class="nav">
+    <h1>TALLHAGEN</h1>
+</div>
 
 <div class="grid">
-    <div class="card" onclick="play('https://kdata1.com/2020/05/slope/')">
+    <div class="card" onclick="runGame('https://kdata1.com/2020/05/slope/')">
         <img src="https://static.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg">
         <p>Slope</p>
     </div>
 
-    <div class="card" onclick="play('https://1v1.lol/')">
+    <div class="card" onclick="runGame('https://images-opensocial.googleusercontent.com/gadgets/proxy?container=fb&url=https://1v1.lol/')">
         <img src="https://static.gamedistribution.com/666657908f9d44f7988361099f36b048-512x512.jpeg">
         <p>1v1.LOL</p>
     </div>
 
-    <div class="card" onclick="play('https://tunnelrush.org/')">
+    <div class="card" onclick="runGame('https://v6p9d9t4.ssl.hwcdn.net/html5/2330740/index.html')">
         <img src="https://static.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg">
         <p>Tunnel Rush</p>
     </div>
 
-    <div class="card" onclick="play('https://eaglercraft.com/mc/1.8.8/')">
-        <img src="https://via.placeholder.com/150/00d4ff/000?text=Minecraft">
-        <p>Minecraft</p>
+    <div class="card" onclick="runGame('https://games.mathpapers.org/subway-surfers/')">
+        <img src="https://static.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg">
+        <p>Subway Surfers</p>
+    </div>
+
+    <div class="card" onclick="runGame('https://game316049.konggames.com/gamebox/runtime/index.html')">
+        <img src="https://static.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg">
+        <p>Retro Bowl</p>
     </div>
 </div>
 
 <script>
-    function play(url) {
-        document.querySelector('iframe').src = url;
-        document.getElementById('player').style.display = 'block';
+    function runGame(url) {
+        document.getElementById('game-iframe').src = url;
+        document.getElementById('game-overlay').style.display = 'block';
+    }
+
+    function stopGame() {
+        document.getElementById('game-overlay').style.display = 'none';
+        document.getElementById('game-iframe').src = '';
     }
 </script>
 
