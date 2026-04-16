@@ -2,69 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen | Unblocked</title>
+    <title>Tallhagen Unblocked</title>
     <style>
-        body { margin: 0; background: #0b0e14; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        .nav { background: #161b22; padding: 25px; text-align: center; border-bottom: 3px solid #00d4ff; }
-        h1 { margin: 0; font-size: 2.5rem; color: #00d4ff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px #00d4ff; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 40px; }
-        
-        /* Game Card */
-        .card { background: #1c2128; border-radius: 15px; padding: 10px; text-align: center; cursor: pointer; border: 1px solid #30363d; transition: 0.3s; }
-        .card:hover { transform: scale(1.08); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
-        .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
-        .card p { margin: 0; font-weight: bold; font-size: 1rem; }
-
-        /* Fullscreen Game Player */
-        #player-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; }
+        body { margin: 0; background: #000; color: #00d4ff; font-family: sans-serif; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding: 20px; }
+        .card { background: #111; border: 2px solid #333; border-radius: 10px; padding: 10px; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: #00d4ff; transform: scale(1.05); background: #1a1a1a; }
+        .card img { width: 100%; border-radius: 5px; height: 100px; object-fit: cover; }
+        h1 { padding: 20px; margin: 0; text-shadow: 0 0 10px #00d4ff; }
+        #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .close-btn { position: absolute; top: 15px; left: 15px; background: #ff4444; color: white; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; z-index: 1000; }
+        .close { position: absolute; top: 10px; right: 20px; background: red; color: #fff; padding: 10px; cursor: pointer; font-weight: bold; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-<div id="player-overlay">
-    <div class="close-btn" onclick="closeGame()">✖ CLOSE GAME</div>
-    <iframe id="game-frame" src=""></iframe>
+<div id="player">
+    <div class="close" onclick="document.getElementById('player').style.display='none'; document.querySelector('iframe').src=''">CLOSE</div>
+    <iframe src=""></iframe>
 </div>
 
-<div class="nav">
-    <h1>TALLHAGEN</h1>
-</div>
+<h1>TALLHAGEN</h1>
 
-<div id="game-grid" class="grid">
-    <div class="card" onclick="openGame('https://html5.gamedistribution.com/f27376c813d14282a5c5316f0f295192/')">
-        <img src="https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg">
+<div class="grid">
+    <div class="card" onclick="play('https://kdata1.com/2020/05/slope/')">
+        <img src="https://static.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg">
         <p>Slope</p>
     </div>
-    <div class="card" onclick="openGame('https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/')">
-        <img src="https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg">
-        <p>Moto X3M</p>
+
+    <div class="card" onclick="play('https://1v1.lol/')">
+        <img src="https://static.gamedistribution.com/666657908f9d44f7988361099f36b048-512x512.jpeg">
+        <p>1v1.LOL</p>
     </div>
-    <div class="card" onclick="openGame('https://html5.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794/')">
-        <img src="https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg">
-        <p>Subway Surfers</p>
-    </div>
-    <div class="card" onclick="openGame('https://html5.gamedistribution.com/7123485750844781a7b82436f56e9c9c/')">
-        <img src="https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg">
+
+    <div class="card" onclick="play('https://tunnelrush.org/')">
+        <img src="https://static.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg">
         <p>Tunnel Rush</p>
     </div>
-    <div class="card" onclick="openGame('https://html5.gamedistribution.com/694e99f0e6984d728639e449a0391629/')">
-        <img src="https://img.gamedistribution.com/694e99f0e6984d728639e449a0391629-512x512.jpeg">
-        <p>Basketball Stars</p>
+
+    <div class="card" onclick="play('https://eaglercraft.com/mc/1.8.8/')">
+        <img src="https://via.placeholder.com/150/00d4ff/000?text=Minecraft">
+        <p>Minecraft</p>
     </div>
 </div>
 
 <script>
-    function openGame(url) {
-        document.getElementById('game-frame').src = url;
-        document.getElementById('player-overlay').style.display = 'block';
-    }
-
-    function closeGame() {
-        document.getElementById('player-overlay').style.display = 'none';
-        document.getElementById('game-frame').src = '';
+    function play(url) {
+        document.querySelector('iframe').src = url;
+        document.getElementById('player').style.display = 'block';
     }
 </script>
 
