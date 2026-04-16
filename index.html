@@ -2,70 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tallhagen Unblocked</title>
     <style>
-        body { margin: 0; background: #050505; color: #00d4ff; font-family: sans-serif; text-align: center; }
-        .nav { background: #111; padding: 25px; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 15px #00d4ff; }
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
-        .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; }
-        .card:hover { border-color: #00d4ff; transform: scale(1.05); }
-        .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; background: #222; }
-        .card p { margin: 10px 0 0; font-weight: bold; color: #fff; }
-        
-        /* The Secret Sauce: Fullscreen Player */
-        #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
-        iframe { width: 100%; height: 100%; border: none; }
-        .close { position: absolute; top: 15px; right: 20px; background: #ff4444; color: #fff; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
+        body { margin: 0; background: #0a0a0a; color: #00d4ff; font-family: sans-serif; text-align: center; }
+        .header { padding: 40px; background: #111; border-bottom: 2px solid #00d4ff; }
+        h1 { margin: 0; font-size: 2.5rem; letter-spacing: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 40px; }
+        .card { background: #1a1a1a; border-radius: 12px; padding: 15px; border: 1px solid #333; cursor: pointer; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+        .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; background: #222; }
+        .card p { margin: 12px 0 0; font-weight: bold; color: #fff; }
     </style>
 </head>
 <body>
 
-<div id="player">
-    <div class="close" onclick="closeGame()">✖ CLOSE</div>
-    <iframe id="game-frame" src=""></iframe>
-</div>
-
-<div class="nav">
+<div class="header">
     <h1>TALLHAGEN</h1>
 </div>
 
-<div class="grid" id="grid">
+<div class="grid" id="game-grid">
     </div>
 
 <script>
-    // These links are "Embed-Ready" - they won't go black.
-    const gameList = [
-        { n: "Slope", u: "https://html5.gamedistribution.com/f27376c813d14282a5c5316f0f295192/", i: "https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
-        { n: "Subway Surfers", u: "https://html5.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794/", i: "https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
-        { n: "Tunnel Rush", u: "https://html5.gamedistribution.com/7123485750844781a7b82436f56e9c9c/", i: "https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
-        { n: "Moto X3M", u: "https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/", i: "https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg" },
-        { n: "Retro Bowl", u: "https://html5.gamedistribution.com/f25585863c37466580f488663806a090/", i: "https://img.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
-        { n: "Eggy Car", u: "https://html5.gamedistribution.com/565d781a426f43e098807d478635848d/", i: "https://img.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" },
-        { n: "1v1.LOL", u: "https://1v1.lol/", i: "https://via.placeholder.com/150/00d4ff/000?text=1v1" }
+    // These are the most stable links used by major unblocked sites
+    const games = [
+        { name: "Slope", url: "https://kdata1.com/2020/05/slope/", img: "https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
+        { name: "Subway Surfers", url: "https://games.mathpapers.org/subway-surfers/", img: "https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
+        { name: "1v1.LOL", url: "https://1v1.lol/", img: "https://img.gamedistribution.com/666657908f9d44f7988361099f36b048-512x512.jpeg" },
+        { name: "Tunnel Rush", url: "https://ubg77.github.io/edit/tunnel-rush/", img: "https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
+        { name: "Retro Bowl", url: "https://ubg77.github.io/edit/retro-bowl/", img: "https://img.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
+        { name: "Moto X3M", url: "https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/", img: "https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg" },
+        { name: "Eggy Car", url: "https://ubg77.github.io/edit/eggy-car/", img: "https://img.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" }
     ];
 
-    const grid = document.getElementById('grid');
-    gameList.forEach(game => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
-        card.onclick = () => {
-            // For 1v1.LOL, we open in a new tab because it blocks iframes
-            if(game.n === "1v1.LOL") {
-                window.open(game.u, '_blank');
-            } else {
-                document.getElementById('game-frame').src = game.u;
-                document.getElementById('player').style.display = 'block';
-            }
-        };
-        grid.appendChild(card);
-    });
+    const grid = document.getElementById('game-grid');
 
-    function closeGame() {
-        document.getElementById('player').style.display = 'none';
-        document.getElementById('game-frame').src = '';
-    }
+    games.forEach(game => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<img src="${game.img}"><p>${game.name}</p>`;
+        
+        div.onclick = () => {
+            // CLOAKING TECHNIQUE: Opens a new blank tab and injects the game
+            var win = window.open();
+            var url = game.url;
+            var iframe = win.document.createElement('iframe');
+            
+            win.document.title = "Google Drive"; // Tricky tab title
+            win.document.body.style.margin = "0";
+            win.document.body.style.height = "100vh";
+            
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = url;
+            
+            win.document.body.appendChild(iframe);
+        };
+        grid.appendChild(div);
+    });
 </script>
+
 </body>
 </html>
