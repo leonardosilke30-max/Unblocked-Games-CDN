@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen | 2026 Unblocked</title>
+    <title>Tallhagen | 500+ Unblocked</title>
     <style>
         body { margin: 0; background: #050505; color: #00d4ff; font-family: 'Segoe UI', sans-serif; }
         .nav { background: #111; padding: 25px; text-align: center; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 15px #00d4ff; }
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; text-transform: uppercase; }
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
         
         .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; text-align: center; }
@@ -14,7 +14,6 @@
         .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }
         .card p { margin: 10px 0 0; font-weight: bold; color: #fff; font-size: 14px; }
 
-        /* Fullscreen Overlay */
         #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
         .close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: #fff; padding: 12px 25px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
@@ -34,23 +33,23 @@
 <div class="grid" id="grid"></div>
 
 <script>
-    // These are ALL raw CDN links like your working Slope/Subway links
+    // ONLY GITHUB MIRRORS - Harder to block, no 'hwcdn' errors
     const gameList = [
-        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://static.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
-        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://static.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
-        { n: "Tunnel Rush", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2330740/index.html", i: "https://static.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
-        { n: "Retro Bowl", u: "https://game316049.konggames.com/gamebox/runtime/index.html", i: "https://static.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
-        { n: "Eggy Car", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2114757/index.html", i: "https://static.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" },
+        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/slope/slope.png" },
+        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/subway-surfers/img/subway-surfers.png" },
+        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/tunnel-rush/tunnel-rush.png" },
+        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/retro-bowl/retro-bowl.png" },
+        { n: "1v1.LOL", u: "https://726487192-805164227572851440.preview.edit.mcreader.net/1v1.lol/", i: "https://via.placeholder.com/150/00d4ff/000?text=1v1" },
+        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://via.placeholder.com/150/00d4ff/000?text=EggyCar" },
         { n: "Minecraft", u: "https://precisionclient.pages.dev/", i: "https://via.placeholder.com/150/00d4ff/000?text=Minecraft" },
-        { n: "Drift Hunters", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/1444158/index.html", i: "https://static.gamedistribution.com/735c091917f64794828699742518e388-512x512.jpeg" },
-        { n: "Crossy Road", u: "https://v6p9d9t4.ssl.hwcdn.net/html5/2330663/index.html", i: "https://static.gamedistribution.com/8303f901192d46e2888463994960d703-512x512.jpeg" }
+        { n: "Drive Mad", u: "https://ubg77.github.io/edit/drive-mad/", i: "https://via.placeholder.com/150/00d4ff/000?text=DriveMad" }
     ];
 
     const grid = document.getElementById('grid');
     gameList.forEach(game => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
+        card.innerHTML = `<img src="${game.i}" onerror="this.src='https://via.placeholder.com/150/222/00d4ff?text=Game'"><p>${game.n}</p>`;
         card.onclick = () => {
             document.getElementById('game-frame').src = game.u;
             document.getElementById('player').style.display = 'block';
