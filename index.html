@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen | 2026 Mirror</title>
+    <title>Tallhagen Unblocked</title>
     <style>
-        body { margin: 0; background: #050505; color: #00d4ff; font-family: 'Segoe UI', sans-serif; }
-        .nav { background: #111; padding: 25px; text-align: center; border-bottom: 2px solid #00d4ff; }
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; text-shadow: 0 0 10px #00d4ff; }
+        body { margin: 0; background: #050505; color: #00d4ff; font-family: sans-serif; text-align: center; }
+        .nav { background: #111; padding: 25px; border-bottom: 2px solid #00d4ff; box-shadow: 0 0 15px #00d4ff; }
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 3px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; padding: 30px; }
-        .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; text-align: center; }
+        .card { background: #1a1a1a; border-radius: 10px; padding: 10px; border: 1px solid #333; cursor: pointer; transition: 0.2s; }
         .card:hover { border-color: #00d4ff; transform: scale(1.05); }
-        .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; }
+        .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; background: #222; }
         .card p { margin: 10px 0 0; font-weight: bold; color: #fff; }
         #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
@@ -31,24 +31,28 @@
 <div class="grid" id="grid"></div>
 
 <script>
-    // These use the same mirror logic as your working Slope/Subway links
+    // This Proxy tricks the school filter into thinking the game is just "Google Content"
+    const proxy = "https://images-opensocial.googleusercontent.com/gadgets/proxy?container=fb&url=";
+
     const gameList = [
-        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://via.placeholder.com/150/00d4ff/000?text=Slope" },
-        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://via.placeholder.com/150/00d4ff/000?text=Subway" },
-        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://via.placeholder.com/150/00d4ff/000?text=Tunnel+Rush" },
-        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://via.placeholder.com/150/00d4ff/000?text=Retro+Bowl" },
-        { n: "Bitlife", u: "https://ubg77.github.io/edit/bitlife/", i: "https://via.placeholder.com/150/00d4ff/000?text=Bitlife" },
-        { n: "Minecraft", u: "https://precisionclient.pages.dev/", i: "https://via.placeholder.com/150/00d4ff/000?text=Minecraft" },
-        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://via.placeholder.com/150/00d4ff/000?text=Eggy+Car" }
+        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/slope/slope.png" },
+        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/subway-surfers/img/subway-surfers.png" },
+        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/tunnel-rush/tunnel-rush.png" },
+        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/retro-bowl/retro-bowl.png" },
+        { n: "Bitlife", u: "https://ubg77.github.io/edit/bitlife/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/bitlife/bitlife.png" },
+        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/eggy-car/eggy-car.png" },
+        { n: "Drive Mad", u: "https://ubg77.github.io/edit/drive-mad/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/drive-mad/drive-mad.png" }
     ];
 
     const grid = document.getElementById('grid');
     gameList.forEach(game => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
+        // Thumbnails also go through the proxy so they don't break anymore
+        card.innerHTML = `<img src="${proxy + encodeURIComponent(game.i)}"><p>${game.n}</p>`;
         card.onclick = () => {
-            document.getElementById('game-frame').src = game.u;
+            // Games load through Google Proxy to bypass "Not Available" errors
+            document.getElementById('game-frame').src = proxy + encodeURIComponent(game.u);
             document.getElementById('player').style.display = 'block';
         };
         grid.appendChild(card);
