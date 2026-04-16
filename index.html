@@ -12,9 +12,11 @@
         .card:hover { border-color: #00d4ff; transform: scale(1.05); }
         .card img { width: 100%; height: 100px; object-fit: cover; border-radius: 5px; background: #222; }
         .card p { margin: 10px 0 0; font-weight: bold; color: #fff; }
+        
+        /* The Secret Sauce: Fullscreen Player */
         #player { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .close { position: absolute; top: 15px; left: 15px; background: #ff0000; color: #fff; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
+        .close { position: absolute; top: 15px; right: 20px; background: #ff4444; color: #fff; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 8px; z-index: 10000; }
     </style>
 </head>
 <body>
@@ -28,32 +30,34 @@
     <h1>TALLHAGEN</h1>
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="grid" id="grid">
+    </div>
 
 <script>
-    // This Proxy tricks the school filter into thinking the game is just "Google Content"
-    const proxy = "https://images-opensocial.googleusercontent.com/gadgets/proxy?container=fb&url=";
-
+    // These links are "Embed-Ready" - they won't go black.
     const gameList = [
-        { n: "Slope", u: "https://kdata1.com/2020/05/slope/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/slope/slope.png" },
-        { n: "Subway Surfers", u: "https://games.mathpapers.org/subway-surfers/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/subway-surfers/img/subway-surfers.png" },
-        { n: "Tunnel Rush", u: "https://ubg77.github.io/edit/tunnel-rush/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/tunnel-rush/tunnel-rush.png" },
-        { n: "Retro Bowl", u: "https://ubg77.github.io/edit/retro-bowl/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/retro-bowl/retro-bowl.png" },
-        { n: "Bitlife", u: "https://ubg77.github.io/edit/bitlife/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/bitlife/bitlife.png" },
-        { n: "Eggy Car", u: "https://ubg77.github.io/edit/eggy-car/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/eggy-car/eggy-car.png" },
-        { n: "Drive Mad", u: "https://ubg77.github.io/edit/drive-mad/", i: "https://raw.githubusercontent.com/3kh0/3kh0-assets/main/drive-mad/drive-mad.png" }
+        { n: "Slope", u: "https://html5.gamedistribution.com/f27376c813d14282a5c5316f0f295192/", i: "https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
+        { n: "Subway Surfers", u: "https://html5.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794/", i: "https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
+        { n: "Tunnel Rush", u: "https://html5.gamedistribution.com/7123485750844781a7b82436f56e9c9c/", i: "https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
+        { n: "Moto X3M", u: "https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/", i: "https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg" },
+        { n: "Retro Bowl", u: "https://html5.gamedistribution.com/f25585863c37466580f488663806a090/", i: "https://img.gamedistribution.com/f25585863c37466580f488663806a090-512x512.jpeg" },
+        { n: "Eggy Car", u: "https://html5.gamedistribution.com/565d781a426f43e098807d478635848d/", i: "https://img.gamedistribution.com/565d781a426f43e098807d478635848d-512x512.jpeg" },
+        { n: "1v1.LOL", u: "https://1v1.lol/", i: "https://via.placeholder.com/150/00d4ff/000?text=1v1" }
     ];
 
     const grid = document.getElementById('grid');
     gameList.forEach(game => {
         const card = document.createElement('div');
         card.className = 'card';
-        // Thumbnails also go through the proxy so they don't break anymore
-        card.innerHTML = `<img src="${proxy + encodeURIComponent(game.i)}"><p>${game.n}</p>`;
+        card.innerHTML = `<img src="${game.i}"><p>${game.n}</p>`;
         card.onclick = () => {
-            // Games load through Google Proxy to bypass "Not Available" errors
-            document.getElementById('game-frame').src = proxy + encodeURIComponent(game.u);
-            document.getElementById('player').style.display = 'block';
+            // For 1v1.LOL, we open in a new tab because it blocks iframes
+            if(game.n === "1v1.LOL") {
+                window.open(game.u, '_blank');
+            } else {
+                document.getElementById('game-frame').src = game.u;
+                document.getElementById('player').style.display = 'block';
+            }
         };
         grid.appendChild(card);
     });
