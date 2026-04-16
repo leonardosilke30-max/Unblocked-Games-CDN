@@ -2,26 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tallhagen Unblocked | 2026</title>
+    <title>Tallhagen | Unblocked</title>
     <style>
-        body { margin: 0; background: #050505; color: white; font-family: 'Segoe UI', sans-serif; }
-        .nav { background: #111; padding: 30px; text-align: center; border-bottom: 2px solid #00d4ff; }
-        h1 { color: #00d4ff; text-shadow: 0 0 15px #00d4ff; margin: 0; font-size: 2.5rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 40px; }
-        .card { background: #1a1a1a; border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { transform: scale(1.05); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.4); }
-        .card img { width: 100%; border-radius: 8px; height: 110px; object-fit: cover; }
-        .card p { margin: 10px 0 0; font-weight: bold; font-size: 14px; }
-        /* The Secret Player Overlay */
-        #game-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
-        #game-frame { width: 100%; height: 100%; border: none; }
-        .close-btn { position: absolute; top: 10px; right: 20px; background: #ff4444; color: white; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; z-index: 10000; }
+        body { margin: 0; background: #0b0e14; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .nav { background: #161b22; padding: 25px; text-align: center; border-bottom: 3px solid #00d4ff; }
+        h1 { margin: 0; font-size: 2.5rem; color: #00d4ff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px #00d4ff; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 40px; }
+        
+        /* Game Card */
+        .card { background: #1c2128; border-radius: 15px; padding: 10px; text-align: center; cursor: pointer; border: 1px solid #30363d; transition: 0.3s; }
+        .card:hover { transform: scale(1.08); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+        .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+        .card p { margin: 0; font-weight: bold; font-size: 1rem; }
+
+        /* Fullscreen Game Player */
+        #player-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; }
+        iframe { width: 100%; height: 100%; border: none; }
+        .close-btn { position: absolute; top: 15px; left: 15px; background: #ff4444; color: white; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; z-index: 1000; }
     </style>
 </head>
 <body>
 
-<div id="game-container">
-    <div class="close-btn" onclick="closeGame()">CLOSE GAME</div>
+<div id="player-overlay">
+    <div class="close-btn" onclick="closeGame()">✖ CLOSE GAME</div>
     <iframe id="game-frame" src=""></iframe>
 </div>
 
@@ -29,39 +33,40 @@
     <h1>TALLHAGEN</h1>
 </div>
 
-<div id="game-grid" class="grid"></div>
+<div id="game-grid" class="grid">
+    <div class="card" onclick="openGame('https://html5.gamedistribution.com/f27376c813d14282a5c5316f0f295192/')">
+        <img src="https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg">
+        <p>Slope</p>
+    </div>
+    <div class="card" onclick="openGame('https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/')">
+        <img src="https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg">
+        <p>Moto X3M</p>
+    </div>
+    <div class="card" onclick="openGame('https://html5.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794/')">
+        <img src="https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg">
+        <p>Subway Surfers</p>
+    </div>
+    <div class="card" onclick="openGame('https://html5.gamedistribution.com/7123485750844781a7b82436f56e9c9c/')">
+        <img src="https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg">
+        <p>Tunnel Rush</p>
+    </div>
+    <div class="card" onclick="openGame('https://html5.gamedistribution.com/694e99f0e6984d728639e449a0391629/')">
+        <img src="https://img.gamedistribution.com/694e99f0e6984d728639e449a0391629-512x512.jpeg">
+        <p>Basketball Stars</p>
+    </div>
+</div>
 
 <script>
-    // THESE LINKS ARE 100% WORKING EMBEDS IN 2026
-    const games = [
-        { n: "Slope", u: "https://html5.gamedistribution.com/f27376c813d14282a5c5316f0f295192/", i: "https://img.gamedistribution.com/f27376c813d14282a5c5316f0f295192-512x512.jpeg" },
-        { n: "Tunnel Rush", u: "https://html5.gamedistribution.com/7123485750844781a7b82436f56e9c9c/", i: "https://img.gamedistribution.com/7123485750844781a7b82436f56e9c9c-512x512.jpeg" },
-        { n: "Subway Surfers", u: "https://html5.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794/", i: "https://img.gamedistribution.com/39d0910bc73a4413a2830846d0a7a794-512x512.jpeg" },
-        { n: "Bottle Flip", u: "https://html5.gamedistribution.com/4769399478f44778918231560c5a242c/", i: "https://img.gamedistribution.com/4769399478f44778918231560c5a242c-512x512.jpeg" },
-        { n: "Table Tennis", u: "https://html5.gamedistribution.com/8303f901192d46e2888463994960d703/", i: "https://img.gamedistribution.com/8303f901192d46e2888463994960d703-512x512.jpeg" },
-        { n: "Drift Wave", u: "https://html5.gamedistribution.com/2645853f932840909403b224e75d506a/", i: "https://img.gamedistribution.com/2645853f932840909403b224e75d506a-512x512.jpeg" },
-        { n: "Moto X3M", u: "https://html5.gamedistribution.com/289e6022e0324024849319ec80c5e3f4/", i: "https://img.gamedistribution.com/289e6022e0324024849319ec80c5e3f4-512x512.jpeg" }
-    ];
-
-    const grid = document.getElementById('game-grid');
-
-    games.forEach(g => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<img src="${g.i}"><p>${g.n}</p>`;
-        div.onclick = () => openGame(g.u);
-        grid.appendChild(div);
-    });
-
     function openGame(url) {
         document.getElementById('game-frame').src = url;
-        document.getElementById('game-container').style.display = 'block';
+        document.getElementById('player-overlay').style.display = 'block';
     }
 
     function closeGame() {
-        document.getElementById('game-container').style.display = 'none';
+        document.getElementById('player-overlay').style.display = 'none';
         document.getElementById('game-frame').src = '';
     }
 </script>
+
 </body>
 </html>
